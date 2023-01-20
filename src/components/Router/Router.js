@@ -10,12 +10,7 @@ export const router = createBrowserRouter([
             {
                 path:'/',
                 element: <Home></Home>
-            },
-            // {
-            //     path:'/users/:id',
-            //     element: <Home></Home>,
-            //     loader: ({params}) => fetch(`https://users-list-server.vercel.app/users/${params.id}`)
-            // }
+            }
         ]
     }
 ])
