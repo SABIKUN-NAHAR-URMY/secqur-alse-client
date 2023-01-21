@@ -65,7 +65,7 @@ const Home = () => {
         <div>
             <section>
 
-                <div className='grid grid-cols-12'>
+                <div className='grid lg:grid-cols-12'>
                     <div className='bg-blue-400 col-span-1'>
 
                     </div>
