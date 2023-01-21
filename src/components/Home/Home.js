@@ -32,28 +32,28 @@ const Home = () => {
     }
 
     const handelChennai = () =>{
-        const filterEventChennai = allUsers.filter(usersData1 => usersData1.Location === 'Chennai');
+        const filterEventChennai = allUsers.filter(usersData => usersData.Location === 'Chennai');
 
             setUsers(filterEventChennai);
     }
 
     const handelHyderabad = () =>{
-        const filterEventHyderabad = allUsers.filter(usersData2 => usersData2.Location === 'Hyderabad');
+        const filterEventHyderabad = allUsers.filter(usersData => usersData.Location === 'Hyderabad');
             setUsers(filterEventHyderabad);
     }
 
     const handelBangalore = () =>{
-        const filterEventBangalore = allUsers.filter(usersData2 => usersData2.Location === 'Bangalore');
+        const filterEventBangalore = allUsers.filter(usersData => usersData.Location === 'Bangalore');
             setUsers(filterEventBangalore);
     }
 
     const handelMale = () =>{
-        const filterEventMale = allUsers.filter(usersData2 => usersData2.Gender === 'Male');
+        const filterEventMale = allUsers.filter(usersData => usersData.Gender === 'Male');
             setUsers(filterEventMale);
     }
 
     const handelFemale = () =>{
-        const filterEventFemale = allUsers.filter(usersData2 => usersData2.Gender === 'Female');
+        const filterEventFemale = allUsers.filter(usersData => usersData.Gender === 'Female');
             setUsers(filterEventFemale);
     }
 
