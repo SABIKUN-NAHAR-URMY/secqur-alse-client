@@ -5,17 +5,19 @@ import { db } from '../../firebase/firebase.config';
 import img from '../image/1.PNG';
 import { collection, getDocs } from 'firebase/firestore';
 import icon from '../image/sandwichIcon.png';
+import Loading from '../Loading/Loading';
 
 const Home = () => {
 
     const [users, setUsers] = useState([]);
     const [userItem, setUserItem] = useState([]);
+    const [loading, setLoading] = useState(true);
     const usersCollectionRef = collection(db, "dataUsers")
 
     useEffect(() => {
         const getUsers = async () => {
             const data = await getDocs(usersCollectionRef);
-            console.log(data);
+            setLoading(false);
             setUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
         }
 
@@ -25,6 +27,23 @@ const Home = () => {
 
     const getDataItem = (user) => {
         setUserItem(user);
+    }
+
+    const handelChennai = () =>{
+        const filterEventChennai = users.filter(usersData1 => usersData1.Location === 'Chennai');
+        setLoading(false);
+        setUsers(filterEventChennai);
+    }
+
+    const handelHyderabad = () =>{
+        const filterEventHyderabad = users.filter(usersData2 => usersData2.Location === 'Hyderabad');
+        setLoading(false);
+        setUsers(filterEventHyderabad);
+        console.log(filterEventHyderabad);
+    }
+
+    if(loading){
+        return <Loading></Loading>
     }
 
     return (
@@ -60,20 +79,29 @@ const Home = () => {
 
                     {/* image */}
                     <div className='col-span-3'>
-                        <p className='text-lg font-bold'>Female</p>
-                        <img src={img} alt="" />
+                        <p className='text-2xl m-3 font-bold'>Female</p>
+                        <img src={userItem.img} alt="" />
                     </div>
 
                     {/* events */}
                     <div className='border border-slate-400 col-span-4 p-3'>
                         <div className='flex justify-between'>
                             <p className='text-2xl font-bold'>Events</p>
-                            <img className='w-10' src={icon} alt="" />
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn bg-white m-1"><img className='w-10' src={icon} alt="" /></label>
+                                <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><button onClick={handelChennai}>Chennai</button></li>
+                                    <li><button onClick={handelHyderabad}>Hyderabad </button></li>
+                                    <li><button>Bangalore </button></li>
+                                    <li><button>Male</button></li>
+                                    <li><button>Female</button></li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div>
                             {
-                                users.map(user => <div onClick={() => getDataItem(user)}>
+                                users.map(user => <div key={user.id} onClick={() => getDataItem(user)}>
                                     <div className='border cursor-pointer bg-zinc-400 p-2 text-lg font-semibold focus:bg-gray-800 focus:text-white mb-2'>
                                         <div className='flex justify-between'>
                                             <h1>{user._id}: {user.Location}</h1>
