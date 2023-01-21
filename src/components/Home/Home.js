@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { db } from '../../firebase/firebase.config';
 import img from '../image/1.PNG';
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs } from 'firebase/firestore';
+import icon from '../image/sandwichIcon.png';
 
 const Home = () => {
 
@@ -18,7 +19,8 @@ const Home = () => {
             setUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
         }
 
-        getUsers()
+        getUsers();
+
     }, [])
 
     const getDataItem = (user) => {
@@ -50,7 +52,7 @@ const Home = () => {
 
                             <div className='text-xl'>
                                 <h1>Description: <br />
-                                {userItem.Name} detected at {userItem.Location} on {userItem.Date}.
+                                    {userItem.Name} detected at {userItem.Location} on {userItem.Date}.
                                 </h1>
                             </div>
                         </div>
@@ -65,8 +67,8 @@ const Home = () => {
                     {/* events */}
                     <div className='border border-slate-400 col-span-4 p-3'>
                         <div className='flex justify-between'>
-                            <p className='text-lg font-bold'>Events</p>
-                            <p>icon</p>
+                            <p className='text-2xl font-bold'>Events</p>
+                            <img className='w-10' src={icon} alt="" />
                         </div>
 
                         <div>
