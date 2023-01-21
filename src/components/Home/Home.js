@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 
 const Home = () => {
 
+    const [allUsers, setAllUsers] = useState([]);
     const [users, setUsers] = useState([]);
     const [userItem, setUserItem] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +19,8 @@ const Home = () => {
         const getUsers = async () => {
             const data = await getDocs(usersCollectionRef);
             setLoading(false);
-            setUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+            setUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+            setAllUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         }
 
         getUsers();
@@ -30,16 +32,29 @@ const Home = () => {
     }
 
     const handelChennai = () =>{
-        const filterEventChennai = users.filter(usersData1 => usersData1.Location === 'Chennai');
-        setLoading(false);
-        setUsers(filterEventChennai);
+        const filterEventChennai = allUsers.filter(usersData1 => usersData1.Location === 'Chennai');
+
+            setUsers(filterEventChennai);
     }
 
     const handelHyderabad = () =>{
-        const filterEventHyderabad = users.filter(usersData2 => usersData2.Location === 'Hyderabad');
-        setLoading(false);
-        setUsers(filterEventHyderabad);
-        console.log(filterEventHyderabad);
+        const filterEventHyderabad = allUsers.filter(usersData2 => usersData2.Location === 'Hyderabad');
+            setUsers(filterEventHyderabad);
+    }
+
+    const handelBangalore = () =>{
+        const filterEventBangalore = allUsers.filter(usersData2 => usersData2.Location === 'Bangalore');
+            setUsers(filterEventBangalore);
+    }
+
+    const handelMale = () =>{
+        const filterEventMale = allUsers.filter(usersData2 => usersData2.Gender === 'Male');
+            setUsers(filterEventMale);
+    }
+
+    const handelFemale = () =>{
+        const filterEventFemale = allUsers.filter(usersData2 => usersData2.Gender === 'Female');
+            setUsers(filterEventFemale);
     }
 
     if(loading){
@@ -92,9 +107,9 @@ const Home = () => {
                                 <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                                     <li><button onClick={handelChennai}>Chennai</button></li>
                                     <li><button onClick={handelHyderabad}>Hyderabad </button></li>
-                                    <li><button>Bangalore </button></li>
-                                    <li><button>Male</button></li>
-                                    <li><button>Female</button></li>
+                                    <li><button onClick={handelBangalore}>Bangalore </button></li>
+                                    <li><button onClick={handelMale}>Male</button></li>
+                                    <li><button onClick={handelFemale}>Female</button></li>
                                 </ul>
                             </div>
                         </div>
