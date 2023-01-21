@@ -114,7 +114,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className='overflow-scroll h-[500px]'>
                             {
                                 users.map(user => <div key={user.id} onClick={() => getDataItem(user)}>
                                     <div className='border cursor-pointer bg-zinc-400 p-2 text-lg font-semibold focus:bg-gray-800 focus:text-white mb-2'>
